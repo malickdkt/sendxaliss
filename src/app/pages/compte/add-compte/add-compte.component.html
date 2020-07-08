@@ -1,0 +1,126 @@
+<div class="card container">
+  <h2 >CREER UN COMPTE POUR UN NOUVEAU PARTENAIRE
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/partenaire-existant" class="add" >
+      <button class="add-user" title="Ajouter" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%)">Ajouter compte Existant</button>
+    </a>
+  </h2>
+  <div style="overflow:auto;">
+    <div class="mat-elevation-z8" >
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]="compteForm"  class="col" >
+
+        <mat-form-field appearance="outline">
+          <mat-label>Prénom</mat-label>
+          <label>
+            <div class="col">
+            <input  placeholder="Tapez le prénom" formControlName="prenom" class="form-control">
+            </div>
+          </label>
+          <mat-error *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.prenom.errors.required">Veuillez taper le prénom</mat-error>
+            <mat-error *ngIf="f.prenom.errors.pattern">Le prénom doit contenir seulement des lettres </mat-error>
+            <mat-error *ngIf="f.prenom.errors.minlength">Le prénom doit contenir au minimu 3 lettres </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <label >
+            <div class="col">
+            <input  placeholder="Tapez le nom" formControlName="nom" class="form-control" >
+            </div>
+          </label>
+          <mat-error *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.nom.errors.required">Veuillez taper le nom</mat-error>
+            <mat-error *ngIf="f.nom.errors.pattern">Le nom doit contenir seulement des lettres </mat-error>
+            <mat-error *ngIf="f.nom.errors.minlength">Le nom doit contenir au minimu 2 lettres </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <label>
+            <div class="col">
+            <input  placeholder="Tapez l'email" formControlName="email" class="form-control">
+          </div>
+          </label>
+          <mat-error *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.email.errors.required">Veuillez taper l'adresse email</mat-error>
+            <mat-error *ngIf="f.email.errors.email">L'adresse email n'est pas valide </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Mot de passe </mat-label>
+          <label>
+            <div class="col">
+            <input  placeholder="mot de passe"  type="password" formControlName="password" class="form-control">
+            </div>
+          </label>
+          <mat-error *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.password.errors.required">Veuillez taper le mot de passe </mat-error>
+            <mat-error *ngIf="f.password.errors.minlength">Le mot de passe doit contenir au minimu 5 caractères </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Retapez le mot de passe</mat-label>
+          <label>
+            <div class="col">
+            <input  placeholder="Retapez mot de passe"  type="password" formControlName="passwordComfirm" class="form-control">
+            </div>
+          </label>
+          <mat-error *ngIf="submitted && f.passwordComfirm.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.passwordComfirm.errors.required">Veuillez confirmer le mot de passe </mat-error>
+            <mat-error *ngIf="f.passwordComfirm.errors.mustMatch">les deux mots de passe ne sont pas identiques</mat-error>
+            <mat-error *ngIf="f.passwordComfirm.errors.minlength">Le mot de passe doit contenir au minimu 5 caractères </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Ninea</mat-label>
+          <label>
+            <div class="col">
+            <input  placeholder="Tapez ninea" formControlName="ninea" class="form-control">
+            </div>
+          </label>
+          <mat-error *ngIf="submitted && f.ninea.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.ninea.errors.required">Veuillez taper le ninea  </mat-error>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Régistre de commerce</mat-label>
+          <label>
+            <div class="col">
+            <input  placeholder="régistre commerce" formControlName="rc" class="form-control">
+            </div>
+          </label>
+          <mat-error *ngIf="submitted && f.rc.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.rc.errors.required">Veuillez taper le régistre de commerce  </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Montant à déposer</mat-label>
+          <label>
+            <div class="col">
+            <input  placeholder="montant à déposer" formControlName="montant" class="form-control">
+            </div>
+          </label>
+          <mat-error *ngIf="submitted && f.montant.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.montant.errors.required">Veuillez taper le montant à déposer min(500.000 F)  </mat-error>
+            <mat-error *ngIf="f.montant.errors.pattern">Le monatnt doit contenir seulement des chiffres </mat-error>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <button  class="btn btn-success" type="submit"  (click)="onSubmitForm()" >ENREGISTRER</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+

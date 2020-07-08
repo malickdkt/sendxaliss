@@ -1,8 +1,7 @@
-import { User } from './../../models/User';
-import { AuthentificationService } from './../../services/authentification.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthentificationService} from '../../services/authentification.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-form-connexion',
@@ -12,32 +11,28 @@ import { Router } from '@angular/router';
 export class FormConnexionComponent implements OnInit {
 
   formConnexion: FormGroup;
+  errorMessage: string;
+  constructor(private auth: AuthentificationService, private route: Router, private formBuilder: FormBuilder) {
 
-  constructor(private fb: FormBuilder, private auth: AuthentificationService, private route: Router) { }
-
-  ngOnInit(): void {
-    this.formConnexion = this.fb.group({
-      email: new FormControl(''),
-      password: new FormControl(''),
+  }
+  ngOnInit() {
+    this.formConnexion =  this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     });
   }
-
-  onConnexion() {
-     const user = {
-       email: this.formConnexion.value.email,
-       password: this.formConnexion.value.password,
-    } as User;
-     console.log(this.formConnexion.value);
-     this.auth.getConnexion(user).subscribe(
-       // tslint:disable-next-line: variable-name
-       _data => {
-       return this.route.navigate(['/dasboard']);
-       },
-       error => {
-       console.log(error);
-       }
-
-     );
+    onConnexion() {
+    const  user = {
+      email: this.formConnexion.value.email,
+      password: this.formConnexion.value.password,
+    };
+    this.auth.getConnexion(user).subscribe(
+      data => {
+        return this.route.navigate(['/dasboard']);
+      },
+      error => {
+       /* this.errorMessage = 'Email ou mot de passe incorrect';*/
+        alert(JSON.stringify(error));
+      });
   }
-
 }

@@ -1,18 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Card</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="item"  *ngIf="isAdmin() ">
+<div class="container-fluid ">
+  <div class="col-lg-6 col-md-12">
+    <div class="text-center">
+     <img src="assets/img/partenaire.png" class="float-left" width="500px">
+    </div>
+  </div>
 
-<br>
-<button (click)="onRoles()" >affiche role</button>
-<table class="table">
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>libelle</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let role of roles">
-            <td scope="row">{{ role.id }}</td>
-            <td>{{ role.libelle }}</td>
-        </tr>
-    </tbody>
-</table>
+  <div class=" col-md-6 card-columns">
 
+    <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+      <div class="card-body text-center">
+        <p class="card-text text-white"><i class="fas fa-users fa-5x logo"></i>Utilisateurs</p>
+      </div>
+    </button>
+
+    <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+      <div class="card-body text-center">
+        <p class="card-text text-white"><i class="fas fa-handshake fa-5x logo"></i>Partenaire</p>
+      </div>
+    </button>
+
+    <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+      <div class="card-body text-center">
+        <p class="card-text text-white"><i class="fas fa-file-invoice-dollar fa-5x logo"></i>Parts</p>
+      </div>
+    </button>
+
+    <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+      <div class="card-body text-center">
+        <p class="card-text text-white"><i class="fas fa-credit-card fa-5x logo"></i>Caissiers</p>
+      </div>
+    </button>
+
+    <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+      <div class="card-body text-center">
+        <p class="card-text text-white"><i class="fas fa-id-badge fa-5x logo"></i>Admins</p>
+      </div>
+    </button>
+
+    <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+      <div class="card-body text-center">
+        <p class="card-text text-white"><i class="fas fa-phone fa-5x logo"></i>contacts</p>
+      </div>
+    </button>
+
+    <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+      <div class="card-body text-center">
+        <p class="card-text text-white"><i class="fas fa-signal fa-5x logo"></i>Courbes</p>
+      </div>
+    </button>
+    <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+      <div class="card-body text-center">
+        <p class="card-text text-white"><i class="fas fa-envelope fa-5x logo"></i>Emails</p>
+      </div>
+    </button>
+    <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+      <div class="card-body text-center">
+        <p class="card-text text-white"><i class="fas fa-cog fa-5x logo"></i>Developers</p>
+      </div>
+    </button>
+  </div>
+</div>
+</div>
+
+
+<div class="item"  *ngIf="isPartenaire()">
+  <div class="container-fluid ">
+    <div class="col-lg-6 col-md-12">
+      <div class="text-center">
+       <img src="assets/img/partenaire.png" class="float-left" width="500px">
+      </div>
+    </div>
+
+    <div class=" col-md-6 card-columns">
+
+      <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+        <div class="card-body text-center">
+          <p class="card-text text-white"><i class="fas fa-users fa-5x logo"></i>Utilisateurs</p>
+        </div>
+      </button>
+
+      <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+        <div class="card-body text-center">
+          <p class="card-text text-white"><i class="fas fa-coins fa-5x logo"></i>Compte</p>
+        </div>
+      </button>
+
+      <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+        <div class="card-body text-center">
+          <p class="card-text text-white"><i class="fas fa-file-invoice-dollar fa-5x logo"></i>Parts</p>
+        </div>
+      </button>
+
+      <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+        <div class="card-body text-center">
+          <p class="card-text text-white"><i class="fas fa-hand-holding-usd fa-5x logo"></i>Depots</p>
+        </div>
+      </button>
+
+      <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+        <div class="card-body text-center">
+          <p class="card-text text-white"><i class="fas fa-share fa-5x logo"></i>Envoi</p>
+        </div>
+      </button>
+
+      <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+        <div class="card-body text-center">
+          <p class="card-text text-white"><i class="fas fa-reply fa-5x logo"></i>Retrait</p>
+        </div>
+      </button>
+
+      <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+        <div class="card-body text-center">
+          <p class="card-text text-white"><i class="fas fa-signal fa-5x logo"></i>Courbes</p>
+        </div>
+      </button>
+      <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+        <div class="card-body text-center">
+          <p class="card-text text-white"><i class="fas fa-envelope fa-5x logo"></i>Emails</p>
+        </div>
+      </button>
+      <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+        <div class="card-body text-center">
+          <p class="card-text text-white"><i class="fas fa-link fa-5x logo"></i>Affectation</p>
+        </div>
+      </button>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="item"  *ngIf="isCaissier()">
+    <div class="container-fluid ">
+      <div class="col-lg-6 col-md-12">
+        <div class="text-center">
+         <img src="assets/img/partenaire.png" class="float-left" width="500px">
+        </div>
+      </div>
+
+      <div class=" col-md-6 card-columns">
+
+
+
+        <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+          <div class="card-body text-center">
+            <p class="card-text text-white"><i class="fas fa-coins fa-5x logo"></i>Compte</p>
+          </div>
+        </button>
+
+        <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+          <div class="card-body text-center">
+            <p class="card-text text-white"><i class="fas fa-file-invoice-dollar fa-5x logo"></i>Parts</p>
+          </div>
+        </button>
+
+        <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+          <div class="card-body text-center">
+            <p class="card-text text-white"><i class="fas fa-hand-holding-usd fa-5x logo"></i>Depots</p>
+          </div>
+        </button>
+
+        <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+          <div class="card-body text-center">
+            <p class="card-text text-white"><i class="fas fa-signal fa-5x logo"></i>Courbes</p>
+          </div>
+        </button>
+        <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+          <div class="card-body text-center">
+            <p class="card-text text-white"><i class="fas fa-envelope fa-5x logo"></i>Emails</p>
+          </div>
+        </button>
+        <button class="card" type="btn" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%); width:150px " >
+          <div class="card-body text-center">
+            <p class="card-text text-white"><i class="fas fa-list fa-5x logo"></i>Liste Depot</p>
+          </div>
+        </button>
+      </div>
+    </div>
+    </div>
+
+
+</body>
+</html>

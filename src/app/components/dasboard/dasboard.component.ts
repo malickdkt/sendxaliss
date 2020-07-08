@@ -8,20 +8,34 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
   styleUrls: ['./dasboard.component.scss']
 })
 export class DasboardComponent implements OnInit {
-  roles;
+  roles: string;
+  email: string;
+  constructor() { }
 
-  constructor(private auth: AuthentificationService) { }
-
-  ngOnInit() {
+  ngOnInit(): void {
+    this.roles = JSON.parse(localStorage.getItem('roles'));
 
   }
-  onRoles() {
-    this.auth.getRoles().subscribe(
-      data => {this.roles = data['hydra:member'];
-               console.log(data['hydra:member']
-        ); }
-    );
 
+  isAdmin() {
+    if (this.roles[0] === 'ROLE_SUPER_ADMIN' || this.roles[0] === 'ROLE_ADMIN') {
+      return true;
+    }
+  }
+  isPartenaire() {
+    if (this.roles[0] === 'ROLE_PARTENAIRE' || this.roles[0] === 'ROLE_ADMIN_PARTENAIRE') {
+      return true;
+    }
+  }
+  isCaissier() {
+    if (this.roles[0] === 'ROLE_CAISSIER' || this.roles[0] === 'ROLE_CAISSIER_PARTENAIRE') {
+      return true;
+    }
+  }
+  isUserPartenaire() {
+    if (this.roles[0] === 'ROLE_USER_PARTENAIRE') {
+      return true;
+    }
   }
 
 }

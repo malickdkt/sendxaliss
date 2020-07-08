@@ -1,0 +1,105 @@
+<div class="card container">
+  <h2 >RETIRER DE L'ARGENT
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/envoi" class="add" >
+      <button class="add-user" title="Ajouter" style="background-image: linear-gradient(30deg, #59C193 50%, #32A1D1 130%)">Envoi</button>
+    </a>
+  </h2>
+  <mat-divider></mat-divider>
+  <br>
+  <div style="overflow:auto;">
+      <form [formGroup]="searchForm"  class="form-search">
+        <mat-form-field appearance="outline">
+
+          <label>
+            <div class="col">
+            <input placeholder="Code" formControlName="code"  class="form-control" type="search">
+            </div>
+          </label>
+          <mat-error *ngIf="submitted && f.code.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.code.errors.required">Veuillez taper le code</mat-error>
+            <mat-error *ngIf="f.code.errors.pattern">Le code doit contenir seulement 9 chiffres </mat-error>
+          </mat-error>
+        </mat-form-field>
+        <button mat-flat-button  type="submit"  (click)="onSubmitSearch()"  class="btn btn-success search" >RECHERCHER</button>
+      </form>
+  <div *ngFor="let data of dataSearch">
+
+      <mat-divider></mat-divider>
+      <form [formGroup]="retraitForm"  >
+
+        <mat-form-field appearance="outline">
+          <label>
+            <input matInput disabled [value]="data.prenomE" class="input">
+          </label>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <label>
+            <input matInput disabled [value]="data.nomE">
+          </label>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <label>
+            <input matInput disabled [value]="data.telephoneE">
+          </label>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <label>
+            <input matInput disabled [value]="data.npieceE">
+          </label>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <label>
+            <input matInput disabled [value]="data.prenomB" class="input">
+          </label>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <label>
+            <input matInput disabled [value]="data.nomB">
+          </label>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <label>
+            <input matInput disabled [value]="data.telephoneB">
+          </label>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <label>
+            <input matInput disabled [value]="data.montant" >
+          </label>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <label>
+            <input matInput placeholder="N° CIN bénéficiaire " formControlName="npieceB" >
+          </label>
+          <mat-error *ngIf="submitted && g.npieceB.errors" class="invalid-feedback">
+            <mat-error *ngIf="g.npieceB.errors.required">Veuillez taper le n° de la pièce d'identité du bénéficiaire</mat-error>
+            <mat-error *ngIf="g.npieceB.errors.pattern">Le n° de la pièce d'identité doit contenir 9 chiffres au maximun</mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" *ngIf="isPartenaire()" >
+          <mat-select formControlName="numCompte" placeholder="Compte"  class="select"  >
+            <label>
+              <mat-option *ngFor="let compte of comptes" [value]="compte.numCompte">
+                {{compte.id}}   --   {{compte.numCompte}}   --   {{compte.solde}}
+              </mat-option>
+            </label>
+          </mat-select>
+          <mat-error *ngIf="submitted && g.numCompte.errors" class="invalid-feedback">
+            <mat-error *ngIf="g.numCompte.errors.required">Veuillez choisir un compte pour faire la transaction </mat-error>
+          </mat-error>
+        </mat-form-field>
+        <button mat-flat-button  class="btn" type="submit"  (click)="onSubmitForm()" >ENREGISTRER</button>
+      </form>
+    </div>
+  </div>
+</div>
+

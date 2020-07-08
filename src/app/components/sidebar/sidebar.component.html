@@ -1,87 +1,109 @@
-  <!-- Sidebar -->
-  <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar" style="background-image: linear-gradient( rgb(152, 221, 190), #ffffff 100%)">
 
-    <hr class="sidebar-divider my-0">
-    <li class="nav-item active">
-      <a class="nav-link" href="index.html">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-      Features
+<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar" style="background-image: linear-gradient( rgb(152, 221, 190), #ffffff 100%)">
+
+<div class="nav">
+  <mat-nav-list>
+  <div class="profil-card">
+    <img src="assets/img/caricature-profil.jpg" class="profil-img" alt="Image de profil">
+    <div class="header">
+      <h2>{{email}}</h2>
+      <p>{{roles}}</p>
     </div>
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
-        aria-expanded="true" aria-controls="collapseBootstrap">
-        <i class="far fa-fw fa-window-maximize"></i>
-        <span>Bootstrap UI</span>
-      </a>
-      <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Bootstrap UI</h6>
-          <a class="collapse-item" href="alerts.html">Alerts</a>
-          <a class="collapse-item" href="buttons.html">Buttons</a>
-          <a class="collapse-item" href="dropdowns.html">Dropdowns</a>
-          <a class="collapse-item" href="modals.html">Modals</a>
-          <a class="collapse-item" href="popovers.html">Popovers</a>
-          <a class="collapse-item" href="progress-bar.html">Progress Bars</a>
+  </div>
+
+    <div class="multi-level">
+      <div class="item" >
+        <input type="checkbox"  id="Dashboard">
+        <div class="test">
+         <a routerLinkActive="list-item-active" routerLink="/dasboard"><label for="Dashboard">Dashboard<i class="fas fa-home logo"></i></label></a>
         </div>
       </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="forms.html">
-        <i class="fab fa-fw fa-wpforms"></i>
-        <span>Forms</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
-        aria-controls="collapseTable">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span>
-      </a>
-      <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Tables</h6>
-          <a class="collapse-item" href="simple-tables.html">Simple Tables</a>
-          <a class="collapse-item" href="datatables.html">DataTables</a>
+
+      <div class="item"  *ngIf="isAdmin() ">
+        <input type="checkbox"  id="user">
+        <div class="test">
+        <label for="user">Utilisateurs<i class="fas fa-user logo"></i></label>
         </div>
+        <ul>
+            <i class="fas fa-plus logo  sub-logo"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isAdmin() " routerLink="/add-users">Ajouter </a></li>
+            <i class="fas fa-list logo  sub-logo"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isAdmin()" routerLink="/list-users">Lister </a></li>
+            <i class="fas fa-list logo  sub-logo"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isAdmin()" routerLink="/list-partenaires">Lister partenaire </a></li>
+        </ul>
       </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="ui-colors.html">
-        <i class="fas fa-fw fa-palette"></i>
-        <span>UI Colors</span>
-      </a>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-      Examples
+
+      <div class="item" *ngIf="isAdmin() || isCaissier() || isPartenaire() || isUserPartenaire()">
+        <input type="checkbox" id="partenaire">
+        <div class="test">
+          <label for="partenaire">Partenaire<i class="fas fa-handshake logo"></i></label>
+        </div>
+        <ul>
+          <li><div class="sub-item">
+            <input type="checkbox"  id="partenaire-compte" *ngIf="isAdmin() || isPartenaire()">
+            <div class="test">
+              <label for="partenaire-compte">Compte<i class="fas fa-coins logo "></i></label>
+            </div>
+            <ul>
+                <i class="fas fa-plus logo sub-logo" *ngIf="isAdmin()"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isAdmin()" routerLink="/add-compte">Ajouter </a></li>
+               <i class="fas fa-list logo sub-logo" *ngIf="isAdmin() || isPartenaire()"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isAdmin() || isPartenaire()" routerLink="/list-compte">Lister </a></li>
+            </ul>
+          </div></li>
+          <li><div class="sub-item">
+            <input type="checkbox"  id="partenaire-depot"  *ngIf="isAdmin() || isCaissier() || isPartenaire()" >
+            <div class="test">
+               <label for="partenaire-depot">Dépot<i class="fas fa-hand-holding-usd logo "></i></label>
+            </div>
+            <ul>
+                <i class="fas fa-plus logo sub-logo" *ngIf="isAdmin() || isCaissier() "></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isAdmin() || isCaissier() " routerLink="/add-depots">déposer</a></li>
+              <i class="fas fa-list logo sub-logo" *ngIf="isAdmin() || isCaissier() || isPartenaire()"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isAdmin() || isCaissier() || isPartenaire()"  routerLink="/list-depots">Lister </a></li>
+            </ul>
+          </div></li>
+          <li><div class="sub-item" *ngIf="isUserPartenaire() || isPartenaire()">
+            <input type="checkbox"  id="partenaire-transaction" >
+            <div class="test">
+              <i class="fas fa-sync-alt logo"></i><label for="partenaire-transaction">Transaction</label>
+            </div>
+            <ul>
+              <i class="fas fa-share logo sub-logo"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isUserPartenaire() || isPartenaire()" routerLink="/envoi"> envoyer</a></li>
+              <i class="fas fa-list logo  sub-logo"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isUserPartenaire() || isPartenaire()" routerLink="/list-envoi">Liste des envois </a></li>
+              <i class="fas fa-reply logo sub-logo"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isUserPartenaire() || isPartenaire()" routerLink="/retrait">retirer</a></li>
+              <i class="fas fa-list logo  sub-logo"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isUserPartenaire() || isPartenaire()" routerLink="/list-retrait">Lister des retraits </a></li>
+            </ul>
+          </div></li>
+          <li><div class="sub-item" *ngIf="isPartenaire()">
+            <input type="checkbox"  id="partenaire-userp">
+            <div class="test">
+            <label for="partenaire-userp">Utilisateur <i class="fas fa-user logo"></i></label>
+            </div>
+            <ul>
+              <i class="fas fa-plus logo sub-logo"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isPartenaire()" routerLink="/add-user-partenaire">Ajouter </a></li>
+              <i class="fas fa-list logo sub-logo"></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isPartenaire()" routerLink="/list-user-partenaire">Lister </a></li>
+            </ul>
+          </div></li>
+          <li><div class="sub-item" *ngIf="isPartenaire()">
+            <input type="checkbox"  id="partenaire-affectation">
+            <div class="test">
+             <label for="partenaire-affectation">Affectation <i class="fas fa-link logo"></i></label>
+            </div>
+            <ul>
+                <i class="fas fa-plus logo sub-logo "></i><li><a routerLinkActive="list-item-active" class="item-a" *ngIf="isPartenaire()" routerLink="/add-affectation">Affecter</a></li>
+            </ul>
+          </div></li>
+        </ul>
+
+      </div>
+
+      <div class="item"  *ngIf="isAdmin() || isPartenaire()">
+        <input type="checkbox"  id="parts">
+        <div class="test">
+         <label for="parts"> Voir Parts<i class="fas fa-file-invoice-dollar logo"></i> </label>
+        </div>
+        <ul>
+            <i class="fas fa-list logo sub-logo"></i><li><a routerLinkActive="list-item-active" routerLink="/list-part" class="item-a">Liste des parts</a></li>
+
+        </ul>
+      </div>
     </div>
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true"
-        aria-controls="collapsePage">
-        <i class="fas fa-fw fa-columns"></i>
-        <span>Pages</span>
-      </a>
-      <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Example Pages</h6>
-          <a class="collapse-item" href="login.html">Login</a>
-          <a class="collapse-item" href="register.html">Register</a>
-          <a class="collapse-item" href="404.html">404 Page</a>
-          <a class="collapse-item" href="blank.html">Blank Page</a>
-        </div>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="charts.html">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Charts</span>
-      </a>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="version" id="version-ruangadmin"></div>
-  </ul>
-  <!-- Sidebar -->
+
+</mat-nav-list>
+</div>
+</ul>
